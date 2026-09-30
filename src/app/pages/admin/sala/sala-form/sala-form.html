@@ -1,23 +1,20 @@
-<app-container>
-  <div class="form-container">
-    <h2>Registrar Sala</h2>
+<div class="container mt-4">
+  <h2>{{ formSala.value.id ? 'Editar Sala' : 'Nova Sala' }}</h2>
 
-    <form [formGroup]="formSala">
-      <div class="form-section">
-        <div class="form-group">
-          <label for="nome">Nome:</label>
-          <input id="nome" type="text" name="nome" class="form-control" formControlName="nome"/>
-        </div>
+  <form [formGroup]="formSala" (ngSubmit)="save()">
+    <div class="mb-3">
+      <label for="nome" class="form-label">Nome</label>
+      <input type="text" id="nome" class="form-control" formControlName="nome" />
+    </div>
 
-        <div class="form-group">
-          <label for="preco">Preço:</label>
-          <input id="preco" type="number" name="preco" class="form-control" min="0.01" step="0.01" formControlName="preco"/>
-        </div>
+    <div class="mb-3">
+      <label for="preco" class="form-label">Preço</label>
+      <input type="number" id="preco" class="form-control" formControlName="preco" step="0.01" />
+    </div>
 
-        <button mat-raised-button color="primary" type="submit" (click)="save()">
-          <mat-icon>save</mat-icon> Gravar
-        </button>
-      </div>
-    </form>
-  </div>
-</app-container>
+    <button type="submit" class="btn btn-success me-2" [disabled]="formSala.invalid">
+      Salvar
+    </button>
+    <a routerLink="/salas" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>
